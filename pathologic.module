@@ -89,9 +89,11 @@ function _pathologic_filter($text, $settings, $hash) {
     }
     // Now add local paths based on "this" server URL.
     $settings['local_paths_exploded'][] = array('path' => $base_url_parts['path']);
-    $settings['local_paths_exploded'][] = array('path' => $base_url_parts['path'], 'host' => $base_url_parts['host']);
+
+    // HACKED: if a local URL was set as absolute URL: don't process it.
+    //$settings['local_paths_exploded'][] = array('path' => $base_url_parts['path'], 'host' => $base_url_parts['host']);
     // We'll also just store the host part separately for easy access.
-    $settings['base_url_host'] = $base_url_parts['host'];
+    $settings['base_url_host'] = $hash;
 
     $cached_settings[$hash] = $settings;
   }

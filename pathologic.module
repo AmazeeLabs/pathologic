@@ -354,7 +354,7 @@ function _pathologic_replace($matches) {
   }
 
   // Now to build the URL. Drumroll, please…
-  $url = Url::fromUri('base://' . $url_params['path'], $url_params['options'])->toString();
+  $url = Url::fromUri('internal:/' . $url_params['path'], $url_params['options'])->toString();
 
   // If we need to create a protocol-relative URL, then convert the absolute
   // URL we have now.

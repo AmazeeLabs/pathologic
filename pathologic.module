@@ -370,6 +370,12 @@ function _pathologic_replace($matches) {
     }
   }
 
+  // Hack for the amazeelabs site: we should always convert the https:// into
+  // http://.
+  // @see: http://jira.amazeelabs.com/browse/DEVOPS-353
+  $url = _pathologic_url_to_http($url);
+  // End hack:
+
   // Apply HTML character encoding, as is required for HTML attributes.
   // @see http://drupal.org/node/1672932
   $url = SafeMarkup::checkPlain($url);
@@ -389,4 +395,12 @@ function _pathologic_replace($matches) {
  */
 function _pathologic_url_to_protocol_relative($url) {
   return preg_replace('~^https?://~', '//', $url);
+}
+
+/**
+ * hackish function for a hotfix: http://jira.amazeelabs.com/browse/DEVOPS-353
+ * To be removed when the http/https issue is fixed on our servers.
+ */
+function _pathologic_url_to_http($url) {
+  return preg_replace('~^https://~', 'http://', $url);
 }

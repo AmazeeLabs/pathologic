@@ -358,7 +358,7 @@ function _pathologic_replace($matches) {
     $url = Url::fromRoute('<front>', [], $url_params['options'])->toString();
   }
   else {
-    $url = Url::fromUri('base://' . $url_params['path'], $url_params['options'])->toString();
+    $url = Url::fromUri('internal:/' . $url_params['path'], $url_params['options'])->toString();
   }
 
   // If we need to create a protocol-relative URL, then convert the absolute
